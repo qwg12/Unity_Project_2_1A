@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42f9b0ba0edee9d45a39178b03bd2b94, type: 3}
-  m_Name: NewStory 5
+  m_Script: {fileID: 11500000, guid: 2f89f352c8367b346ac9b889e1f812a9, type: 3}
+  m_Name: Story
   m_EditorClassIdentifier: 
-  storyNumeber: 5
-  storyType: 0
+  storyNumber: 0
+  MainImage: {fileID: 2800000, guid: 85d9fc4a1de2f2f4b812976e69bd85ae, type: 3}
+  storytype: 0
   storyDone: 0
   storyText: "\uB370\uC774\uD130 \uD14C\uC2A4\uD2B8\uB370\uC774\uD130 \uD14C\uC2A4\uD2B8\uB370\uC774\uD130
     \uD14C\uC2A4\uD2B8\uB370\uC774\uD130 \uD14C\uC2A4\uD2B8\uB370\uC774\uD130 \uD14C\uC2A4\uD2B8\uB370\uC774\uD130
@@ -24,31 +25,24 @@ MonoBehaviour:
     \uD14C\uC2A4\uD2B8\uB370\uC774\uD130 \uD14C\uC2A4\uD2B8\uB370\uC774\uD130 \uD14C\uC2A4\uD2B8\uB370\uC774\uD130
     \uD14C\uC2A4\uD2B8"
   options:
-  - optionText: "\uACF5\uACA9\uD55C\uB2E4"
-    buttonText: 
+  - optionText: 
+    buttonText: "\uC120\uD0DD\uC9C01"
     eventCheck:
       checkValue: 0
-      evenType: 0
-      successReslut: []
+      eventType: 0
+      suceessResult: []
       failResult: []
-  - optionText: "\uB3C4\uB9DD\uAC04\uB2E4"
-    buttonText: 
+  - optionText: 
+    buttonText: "\uC120\uD0DD\uC9C02"
     eventCheck:
       checkValue: 0
-      evenType: 0
-      successReslut:
-      - resultType: 5
-        value: 0
-        stats:
-          hpPoint: 0
-          spPoint: 0
-          currentHpPoint: 0
-          currentSpPoint: 0
-          currentXpPoint: 0
-          strength: 0
-          dexterity: 0
-          consitiution: 0
-          Intelligence: 0
-          wisdom: 0
-          charisma: 0
+      eventType: 0
+      suceessResult: []
+      failResult: []
+  - optionText: 
+    buttonText: "\uC120\uD0DD\uC9C03"
+    eventCheck:
+      checkValue: 0
+      eventType: 0
+      suceessResult: []
       failResult: []
