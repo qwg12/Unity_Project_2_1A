@@ -5,6 +5,8 @@ using UnityEditor;
 using STORYGAME;
 using System.Text;
 
+#if UNITY_EDITOR
+[CustomEditor(typeof(GameSystem))]
 public class GameSystemEditor : Editor
 {
     public override void OnInspectorGUI()
@@ -19,8 +21,9 @@ public class GameSystemEditor : Editor
         }
     }
 }
+#endif
 
-    public class GameSystem : MonoBehaviour
+public class GameSystem : MonoBehaviour
 {
     public StoryModel[] storyModels;
 
@@ -74,8 +77,8 @@ public class GameSystemEditor : Editor
     {
         StoryModel tempStoryModel = FindStoryModel(number);
 
-        //StorySystem.Instance.currentStoryModel = tempStoryModel;
-        //StorySystem.Instance.CoShowText();
+        StorySystem.instance.currentStoryModel = tempStoryModel;
+        StorySystem.instance.CoShowText();
     }
 
     public void ChangeState(StoryModel.Result result)
@@ -128,7 +131,6 @@ public class GameSystemEditor : Editor
         }
         return tempStoryModels;
     }
-
 
 #if UNITY_EDITOR
     [ContextMenu("Rest Story Models")]

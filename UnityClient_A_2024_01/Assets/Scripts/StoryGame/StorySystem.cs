@@ -11,6 +11,7 @@ public class StorySystem : MonoBehaviour
 
     public enum TEXTSYSTEM
     {
+        NONE,
         DOING,
         SELECT,
         DONE
@@ -26,6 +27,8 @@ public class StorySystem : MonoBehaviour
     public Button[] buttonWay = new Button[3];
     public Text[] buttonWayText = new Text[3];
 
+    public TEXTSYSTEM currentTextShow = TEXTSYSTEM.NONE;
+
     private void Awake()
     {
         instance = this;
@@ -40,8 +43,7 @@ public class StorySystem : MonoBehaviour
             buttonWay[i].onClick.AddListener(() => OnWayClick(wayIndex));
         }
 
-        StroyModelinit();
-        StartCoroutine(ShowText());
+        CoShowText();
     }
 
     public void StroyModelinit()
@@ -51,17 +53,49 @@ public class StorySystem : MonoBehaviour
 
         for(int i = 0; i < currentStoryModel.options.Length; i++)
         {
-            buttonWayText[i].text = currentStoryModel.options[i].buttonText;
+            buttonWayText[i].text = currentStoryModel.options[i].buttonText;        //버튼 이름 설정
         }
     }
 
-    public void OnWayClick(int index)
+    public void OnWayClick(int index)       //선택지 버튼에 따른 함수 index는 버튼에 연결된 번호를 받아온다.
     {
+        if (currentTextShow == TEXTSYSTEM.DOING)
+            return;
 
+        bool CheckEventTypeNone = false;
+        StoryModel playStoryModel = currentStoryModel;
+
+        if(playStoryModel.options[index].eventCheck.eventType == StoryModel.EventCheck.EventType.NONE)
+        {
+            for (int i = 0; i < playStoryModel.options[index].eventCheck.suceessResult.Length; i++)
+            {
+                GameSystem.instance.ApplyChoice(currentStoryModel.options[index].eventCheck.suceessResult[i]);
+                CheckEventTypeNone = true;
+            }
+        }
+    }
+
+    public void CoShowText()
+    {
+        StroyModelinit();
+        ResetShow();
+        StartCoroutine(ShowText());
+    }
+
+    public void ResetShow()
+    {
+        textComponent.text = "";
+
+        for(int i = 0; i < buttonWay.Length; i++)
+        {
+            buttonWay[i].gameObject.SetActive(false);
+        }
     }
 
     IEnumerator ShowText()
     {
+        currentTextShow = TEXTSYSTEM.DOING;
+
         if(currentStoryModel.MainImage !=null)
         {
             Rect rect = new Rect(0,0,currentStoryModel.MainImage.width , currentStoryModel.MainImage.height);
@@ -91,6 +125,8 @@ public class StorySystem : MonoBehaviour
         }
 
         yield return new WaitForSeconds(delay);
+
+        currentTextShow = TEXTSYSTEM.NONE;
 
     }
 
